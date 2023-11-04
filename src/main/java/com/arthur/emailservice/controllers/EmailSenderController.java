@@ -1,7 +1,7 @@
 package com.arthur.emailservice.controllers;
 
 import com.arthur.emailservice.application.EmailSenderUseCaseImpl;
-import com.arthur.emailservice.core.EmailRequest;
+import com.arthur.emailservice.core.EmailRequestDTO;
 import com.arthur.emailservice.core.exceptions.EmailSenderException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class EmailSenderController {
     }
 
     @PostMapping
-    public ResponseEntity<String> sendEmail(@RequestBody EmailRequest emailRequest) {
+    public ResponseEntity<String> sendEmail(@RequestBody EmailRequestDTO emailRequest) {
         try {
             emailSenderService.sendEmail(emailRequest.toEmail(), emailRequest.subject(), emailRequest.body());
             return ResponseEntity.ok("Email sent successfully.");
